@@ -1,0 +1,42 @@
+.friend-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 100px;
+  position: relative;
+}
+.display-flex {
+  display: flex;
+}
+.mr20 {
+  margin-right: 20px;
+}
+.c-headline {
+  text-align: center;
+  color: white;
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+.space-btwn {
+  justify-content: space-between;
+}
+.answer {
+  flex:1;
+}
+.controls-container {
+  display: flex;
+  justify-content: space-between;
+  position: absolute;
+  top: 340px;
+  width: 280px;
+}
+.mt50 {
+  margin-top: 50px;
+}
+.green {
+  color: green;
+}
+.red {
+  color: red;
+}
+

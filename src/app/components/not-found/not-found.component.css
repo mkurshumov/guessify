@@ -1,0 +1,22 @@
+.not-found-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 100px;
+}
+.c-headline {
+  font-size: 50px;
+  color: white;
+  text-shadow: 3px 3px 10px #000000;
+}
+.headline-container {
+  margin-bottom: 50px;
+  text-align: center;
+}
+.c-button {
+  width: 100%;
+}
+.display-flex {
+  display: flex;
+}

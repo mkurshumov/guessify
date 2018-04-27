@@ -1,0 +1,28 @@
+.logout-el {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  color: white;
+}
+.logout-el:hover {
+  cursor: pointer;
+  color: black;
+}
+.profile {
+  position: absolute;
+  left: 20px;
+  top: 20px;
+  color: white;
+}
+.profile:hover {
+  cursor: pointer;
+  color: black;
+}
+.inner-profile {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.mr5 {
+  margin-right: 5px;
+}

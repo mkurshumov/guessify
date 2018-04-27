@@ -1,0 +1,32 @@
+<!-- <button (click)="generateNewQuiz()" mat-raised-button class="primary">Generate new quiz</button> -->
+
+<div class="friend-container">
+
+  <div class="mat-typography">
+    <h1 class="c-headline">Guess which friend listens this track:</h1>
+  </div>
+
+  <div class="animated fadeIn" *ngIf="track && owner && vsFriend">
+    <div class="mat-typography">
+      <h2 class="c-headline">{{track}}</h2>
+    </div>
+
+    <div class="display-flex space-btwn">
+      <button mat-raised-button color="accent" class="answer" [ngClass]="{'mr20': i == 0}" *ngFor="let user of opponents; let i = index"
+      (click)="checkAnswer(i)" [disabled]="disabledAnswers">
+        {{user}}
+      </button>
+    </div>
+  </div>
+
+  <div class="mt50 mat-typography" *ngIf="correct != null" [ngClass]="{'green': correct, 'red':!correct}">
+    <h2>
+      {{correct ? 'Correct' : 'Wrong'}}
+    </h2>
+  </div>
+
+  <div class="controls-container">
+    <button mat-raised-button color="primary" routerLink="/home">Back</button>
+    <button mat-raised-button color="accent" (click)="generateNewQuiz()" [disabled]="!disabledAnswers">Next Track</button>
+  </div>
+</div>
