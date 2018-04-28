@@ -6,31 +6,57 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from './material.module';
 
+//components
 import { AppComponent } from './app.component';
-import { HomeComponent } from './components/home/home.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
+import { HomeComponent } from './components/private/home/home.component';
+import { LoginComponent } from './components/public/login/login.component';
+import { GuessFriendComponent } from './components/private/guess-friend/guess-friend.component';
+import { PrivateComponent } from './components/private/private.component';
+import { PublicComponent } from './components/public/public.component';
+import { HeaderComponent } from './components/private/partials/header/header.component';
+
+//services
 import { SpotifyService } from './services/spotify.service';
 import { AuthInterceptor } from './helpers/httpInterceptor';
 import { AuthService } from './services/authentication.service';
 import { WebStorageService } from './services/webStorage.service';
-import { AuthGuard } from './guards/authGuard';
-import { LoginComponent } from './components/login/login.component';
+import { DataService } from './services/data.service';
+
+//guards
+import { PrivateGuard } from './guards/privateGuard';
 import { PublicGuard } from './guards/publicGuard';
-import { GuessFriendComponent } from './components/guess-friend/guess-friend.component';
-import { HeaderComponent } from './components/partials/header/header.component';
-import { NotFoundComponent } from './components/not-found/not-found.component';
 
 const appRoutes: Routes = [
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
-  { path: 'callback', component: HomeComponent },
-  { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
-  { path: 'login', component: LoginComponent, canActivate: [PublicGuard] },
-  { path: 'guess-friend', component: GuessFriendComponent, canActivate: [AuthGuard] },
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  {
+    path: '',
+    component: PrivateComponent,
+    canActivate: [PrivateGuard],
+    children: [
+      { path: '', redirectTo: 'home', pathMatch: 'full' },
+      { path: 'callback', component: HomeComponent },
+      { path: 'home', component: HomeComponent },
+      { path: 'guess-friend', component: GuessFriendComponent }
+    ]
+  },
+  {
+    path: '',
+    component: PublicComponent,
+    canActivate: [PublicGuard],
+    children: [
+      { path: '', redirectTo: 'login', pathMatch: 'full' },
+      { path: 'login', component: LoginComponent },
+    ]
+  },
   { path: '**', component: NotFoundComponent }
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
+    PrivateComponent,
+    PublicComponent,
     HomeComponent,
     LoginComponent,
     GuessFriendComponent,
@@ -42,7 +68,7 @@ const appRoutes: Routes = [
     HttpClientModule,
     BrowserAnimationsModule,
     MaterialModule,
-    RouterModule.forRoot(appRoutes, { enableTracing: false })
+    RouterModule.forRoot(appRoutes, { enableTracing: true })
   ],
   providers: [
     SpotifyService,
@@ -53,8 +79,9 @@ const appRoutes: Routes = [
     },
     AuthService,
     WebStorageService,
-    AuthGuard,
-    PublicGuard
+    PrivateGuard,
+    PublicGuard,
+    DataService
   ],
   bootstrap: [AppComponent]
 })

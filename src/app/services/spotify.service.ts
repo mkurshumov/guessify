@@ -20,6 +20,7 @@ export class SpotifyService {
     this.storage.setItem(this.stateKey, this.state);
 
     this.url = 'https://accounts.spotify.com/authorize?response_type=token&client_id=' + encodeURIComponent(this.client_id) + '&scope=' + encodeURIComponent(this.scope) + '&redirect_uri=' + encodeURIComponent(this.redirect_uri) + '&state=' + encodeURIComponent(this.state) + '&show_dialog=true';
+
     window.location.href = this.url;
   }
 

@@ -3,7 +3,6 @@ import { HttpClient } from '@angular/common/http';
 import { promise } from 'protractor';
 import { WebStorageService } from './webStorage.service';
 import { Router } from '@angular/router';
-import { SpotifyService } from './spotify.service';
 
 @Injectable()
 export class AuthService {
@@ -14,9 +13,10 @@ export class AuthService {
 
   public params: object;
 
-  constructor(private http: HttpClient, private storage: WebStorageService, private router: Router, private spotify: SpotifyService) { }
+  constructor(private http: HttpClient, private storage: WebStorageService, private router: Router) { }
 
   isTokenValid() {
+    console.log(this.params);
     if (this.params) {
       this.access_token = this.params['access_token'];
       this.state = this.params['state'];

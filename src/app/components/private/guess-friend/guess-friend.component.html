@@ -13,7 +13,7 @@
 
     <div class="display-flex space-btwn">
       <button mat-raised-button color="accent" class="answer" [ngClass]="{'mr20': i == 0}" *ngFor="let user of opponents; let i = index"
-      (click)="checkAnswer(i)" [disabled]="disabledAnswers">
+        (click)="checkAnswer(i)" [disabled]="disabledAnswers">
         {{user}}
       </button>
     </div>
