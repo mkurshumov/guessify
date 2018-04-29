@@ -1,0 +1,14 @@
+<div class="error-container">
+
+  <div class="animated zoomIn">
+    <div class="mat-typography headline-container">
+      <h1 class="c-headline">Oops. Something went wrong!</h1>
+    </div>
+
+    <div class="display-flex">
+      <button mat-raised-button color="primary" routerLink="/home" *ngIf="isLoggedIn" class="c-button">Back to Home Page</button>
+      <button mat-raised-button color="primary" routerLink="/login" *ngIf="!isLoggedIn" class="c-button">Back to Login Page</button>
+    </div>
+  </div>
+
+</div>

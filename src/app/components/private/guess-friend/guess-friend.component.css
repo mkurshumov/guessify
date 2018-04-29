@@ -1,4 +1,4 @@
-.friend-container {
+.friend-container, .no-playlists-container {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -22,6 +22,9 @@
 }
 .answer {
   flex:1;
+  white-space: nowrap; 
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .controls-container {
   display: flex;
@@ -38,5 +41,16 @@
 }
 .red {
   color: red;
+}
+.txt-center {
+  text-align: center
+}
+a:hover {
+  text-decoration: none;
+}
+.answers-container {
+  display: flex;
+  margin: 0 auto;
+  width: 280px;
 }
 

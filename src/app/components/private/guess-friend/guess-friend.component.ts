@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SpotifyService } from '../../../services/spotify.service';
 import { AuthService } from '../../../services/authentication.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-guess-friend',
@@ -23,7 +24,9 @@ export class GuessFriendComponent implements OnInit {
   public opponents = [];
   public disabledAnswers;
 
-  constructor(private spotify: SpotifyService, private auth: AuthService) { }
+  public dataLoaded = false;
+
+  constructor(private spotify: SpotifyService, private auth: AuthService, private router: Router) { }
 
   ngOnInit() {
     this.getMyPlaylists();
@@ -36,14 +39,15 @@ export class GuessFriendComponent implements OnInit {
         if (res['items'].length) {
           this.populatePlaylists(res);
           this.generateNewQuiz();
-        } else {
-          console.log('No playlists.');
         }
+        this.dataLoaded = true;
       }, err => {
         if (err.status == 401) {
           this.auth.logout();
+        } else {
+          console.log(err.error);
+          this.router.navigate(['/error']);
         }
-        console.log(err);
       })
   }
 
@@ -82,7 +86,6 @@ export class GuessFriendComponent implements OnInit {
       this.randomPlaylist = this.getRandomInt(0, this.playlists.length - 1);
     }
     this.owner = this.playlists[this.randomPlaylist]['owner']['display_name'] || this.playlists[this.randomPlaylist]['owner']['id'];
-
   }
 
   getTracksFromPlaylist(href) {
@@ -92,8 +95,10 @@ export class GuessFriendComponent implements OnInit {
       }, err => {
         if (err.status == 401) {
           this.auth.logout();
+        } else {
+          console.log(err.error);
+          this.router.navigate(['/error']);
         }
-        console.log(err);
       })
   }
 

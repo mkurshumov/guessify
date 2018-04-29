@@ -1,6 +1,6 @@
 <!-- <button (click)="generateNewQuiz()" mat-raised-button class="primary">Generate new quiz</button> -->
 
-<div class="friend-container">
+<div class="friend-container" *ngIf="playlists.length && dataLoaded">
 
   <div class="mat-typography">
     <h1 class="c-headline">Guess which friend listens this track:</h1>
@@ -11,12 +11,13 @@
       <h2 class="c-headline">{{track}}</h2>
     </div>
 
-    <div class="display-flex space-btwn">
+    <div class="txt-center answers-container">
       <button mat-raised-button color="accent" class="answer" [ngClass]="{'mr20': i == 0}" *ngFor="let user of opponents; let i = index"
         (click)="checkAnswer(i)" [disabled]="disabledAnswers">
         {{user}}
       </button>
     </div>
+
   </div>
 
   <div class="mt50 mat-typography" *ngIf="correct != null" [ngClass]="{'green': correct, 'red':!correct}">
@@ -29,4 +30,12 @@
     <button mat-raised-button color="primary" routerLink="/home">Back</button>
     <button mat-raised-button color="accent" (click)="generateNewQuiz()" [disabled]="!disabledAnswers">Next Track</button>
   </div>
+
+</div>
+
+<div *ngIf="!playlists.length && dataLoaded" class="mat-typography txt-center animated fadeIn no-playlists-container">
+  <h1>You have no followed playlists.</h1>
+  <h2>In order to play 'Guessify' you have to have at least 2 followed playlists.</h2>
+  <h3>Please head to
+    <a href="http://spotify.com">Spotify</a> to follow at least 2 playlists.</h3>
 </div>

@@ -1,0 +1,29 @@
+<div class="profile-container animated fadeIn" *ngIf="user">
+  <mat-card>
+    <mat-list>
+      <mat-list-item>
+        <div>Username:
+          <span matTooltip="Link to Spotify">
+            <a href="{{user.link}}" target="_blank"> {{user.name}}</a>
+          </span>
+        </div>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>
+        Email: {{user.email}}
+      </mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>
+        <div>
+          Country:
+          <span class="flag-icon flag-icon-{{user.country}}"></span>
+        </div>
+      </mat-list-item>
+    </mat-list>
+  </mat-card>
+
+  <div class="controls-container">
+    <button mat-raised-button color="primary" routerLink="/home">Back</button>
+  </div>
+
+</div>

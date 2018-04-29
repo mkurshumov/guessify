@@ -16,13 +16,6 @@ export class AuthService {
   constructor(private http: HttpClient, private storage: WebStorageService, private router: Router) { }
 
   isTokenValid() {
-    console.log(this.params);
-    if (this.params) {
-      this.access_token = this.params['access_token'];
-      this.state = this.params['state'];
-      //this.storedState = this.storage.getItem('spotify_auth_state');
-    }
-
     return this.http.get(this.meUrl).toPromise();
   }
 

@@ -17,10 +17,6 @@ export class HeaderComponent implements OnInit {
     this.getMeData();
   }
 
-  toSpotifyMe() {
-    window.location.href = this.user.link;
-  }
-
   logout() {
     this.auth.logout();
   }

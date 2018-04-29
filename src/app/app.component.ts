@@ -25,9 +25,6 @@ export class AppComponent implements OnInit {
       this.storage.setItem(this.spotify.stateKey, params['state']);
       //save token
       this.storage.setItem('access_token', params['access_token']);
-
-      //pass params to auth service
-      this.auth.params = params;
     }
   }
 }

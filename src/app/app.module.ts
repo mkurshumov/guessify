@@ -15,6 +15,7 @@ import { GuessFriendComponent } from './components/private/guess-friend/guess-fr
 import { PrivateComponent } from './components/private/private.component';
 import { PublicComponent } from './components/public/public.component';
 import { HeaderComponent } from './components/private/partials/header/header.component';
+import { ProfileComponent } from './components/private/profile/profile.component';
 
 //services
 import { SpotifyService } from './services/spotify.service';
@@ -26,6 +27,7 @@ import { DataService } from './services/data.service';
 //guards
 import { PrivateGuard } from './guards/privateGuard';
 import { PublicGuard } from './guards/publicGuard';
+import { ErrorComponent } from './components/error/error.component';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -37,7 +39,8 @@ const appRoutes: Routes = [
       { path: '', redirectTo: 'home', pathMatch: 'full' },
       { path: 'callback', component: HomeComponent },
       { path: 'home', component: HomeComponent },
-      { path: 'guess-friend', component: GuessFriendComponent }
+      { path: 'guess-friend', component: GuessFriendComponent },
+      { path: 'profile', component: ProfileComponent },
     ]
   },
   {
@@ -49,6 +52,7 @@ const appRoutes: Routes = [
       { path: 'login', component: LoginComponent },
     ]
   },
+  { path: 'error', component: ErrorComponent },
   { path: '**', component: NotFoundComponent }
 ];
 
@@ -61,14 +65,16 @@ const appRoutes: Routes = [
     LoginComponent,
     GuessFriendComponent,
     HeaderComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    ProfileComponent,
+    ErrorComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     BrowserAnimationsModule,
     MaterialModule,
-    RouterModule.forRoot(appRoutes, { enableTracing: true })
+    RouterModule.forRoot(appRoutes, { enableTracing: false })
   ],
   providers: [
     SpotifyService,
