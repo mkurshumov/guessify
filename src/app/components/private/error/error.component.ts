@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { WebStorageService } from '../../services/webStorage.service';
+import { WebStorageService } from '../../../services/webStorage.service';
 
 @Component({
   selector: 'app-error',
@@ -20,5 +20,4 @@ export class ErrorComponent implements OnInit {
       this.isLoggedIn = false;
     }
   }
-
 }

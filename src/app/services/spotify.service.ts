@@ -58,5 +58,4 @@ export class SpotifyService {
   getTracks(href) {
     return this.http.get(href);
   }
-
 }

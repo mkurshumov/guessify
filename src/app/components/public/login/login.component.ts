@@ -11,12 +11,9 @@ import { AuthService } from '../../../services/authentication.service';
 export class LoginComponent implements OnInit {
   constructor(private spotify: SpotifyService, private auth: AuthService) { }
 
-  ngOnInit() {
-
-  }
+  ngOnInit() { }
 
   login() {
     this.spotify.redirectToSpotify();
   }
-
 }

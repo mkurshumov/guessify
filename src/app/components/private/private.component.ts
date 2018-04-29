@@ -32,6 +32,7 @@ export class PrivateComponent implements OnInit {
         };
         //store data in shared service
         this.data.setData(this.user);
+
         this.dataLoaded = true;
       }, err => {
         if (err.status == 401) {
@@ -42,5 +43,4 @@ export class PrivateComponent implements OnInit {
         }
       })
   }
-
 }
