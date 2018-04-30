@@ -26,6 +26,8 @@ export class GuessFriendComponent implements OnInit {
 
   public dataLoaded = false;
 
+  public hasTwoOwners;
+
   constructor(private spotify: SpotifyService, private auth: AuthService, private router: Router) { }
 
   ngOnInit() {
@@ -35,10 +37,12 @@ export class GuessFriendComponent implements OnInit {
   getMyPlaylists() {
     this.spotify.getMyPlaylists()
       .subscribe(res => {
-        //if it has playlists
-        if (res['items'].length) {
+        //if it has at least 2 playlists
+        if (res['items'].length >= 2) {
           this.populatePlaylists(res);
-          this.generateNewQuiz();
+          if (this.hasTwoOwners) {
+            this.generateNewQuiz();
+          }
         }
         this.dataLoaded = true;
       }, err => {
@@ -58,6 +62,21 @@ export class GuessFriendComponent implements OnInit {
       obj['tracks'] = res['items'][i]['tracks'];
       //store only owner obj and tracks obj
       this.playlists.push(obj);
+    }
+    //ensure you have at least 2 different users
+    this.checkOwners(this.playlists);
+  }
+
+  checkOwners(arr) {
+    this.hasTwoOwners = false;
+    var firstOwner = arr[0]['owner']['display_name'] || arr[0]['owner']['id'];
+    var secondOwner;
+    for (let i = 0; i < arr.length; i++) {
+      secondOwner = arr[i]['owner']['display_name'] || arr[i]['owner']['id'];
+      if (firstOwner != secondOwner) {
+        this.hasTwoOwners = true;
+        break;
+      }
     }
   }
 

@@ -1,4 +1,4 @@
-<div class="friend-container" *ngIf="playlists.length && dataLoaded">
+<div class="friend-container" *ngIf="hasTwoOwners && dataLoaded">
 
   <div class="mat-typography">
     <h1 class="c-headline">Guess which friend listens this track:</h1>
@@ -31,9 +31,15 @@
 
 </div>
 
-<div *ngIf="!playlists.length && dataLoaded" class="mat-typography txt-center animated fadeIn no-playlists-container">
-  <h1>You have no followed playlists.</h1>
-  <h2>In order to play 'Guessify' you have to have at least 2 followed playlists.</h2>
+<div *ngIf="!hasTwoOwners && dataLoaded" class="mat-typography txt-center animated fadeIn no-playlists-container">
+  <h1 *ngIf="!playlists.length">You have no followed playlists</h1>
+  <h2 *ngIf="!playlists.length && !hasTwoOwners">or</h2>
+  <h1 *ngIf="!hasTwoOwners">You have followed playlists only from <b>ONE</b> user.</h1>
+
+  <h2>In order to play 'Guessify' you have to have at least 2 followed playlists each from different users.</h2>
   <h3>Please head to
-    <a href="http://spotify.com">Spotify</a> to follow at least 2 playlists.</h3>
+    <a href="http://spotify.com">Spotify</a> to follow at least 2 playlists from different users.
+  </h3>
+
+  <button mat-raised-button color="primary" routerLink="/home">Back</button>
 </div>
